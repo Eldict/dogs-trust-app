@@ -19,5 +19,5 @@ data class Dog(
     val location: String,
     val description: String,
     val suitableHomeInfo: String,
-    val imageResId: Int
+    val imageID: Int
 )
