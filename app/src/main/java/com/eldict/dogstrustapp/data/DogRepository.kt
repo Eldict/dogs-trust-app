@@ -101,6 +101,6 @@ object DogRepository {
             description = "Likes belly rubs",
             suitableHomeInfo = "Neat and tidy home",
             imageID = R.drawable.dog_bruno
-        ),
+        )
     )
 }
