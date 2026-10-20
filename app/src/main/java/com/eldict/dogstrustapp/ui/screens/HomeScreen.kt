@@ -13,6 +13,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.selection.selectable
+import androidx.compose.material3.Button
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.ui.draw.dropShadow
 import androidx.compose.ui.layout.ContentScale
 import com.eldict.dogstrustapp.R
 
@@ -42,5 +46,20 @@ fun HomeScreen(modifier: Modifier = Modifier) {
                 .fillMaxWidth()
                 .height(220.dp)
         )
+        Spacer(modifier = Modifier.height(24.dp))
+        Button(
+            onClick = {/* will open the dog list later (Req 6) */},
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(text = "Find a Dog")
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+        OutlinedButton(
+            onClick = {},
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(text = "Adoption Information")
+        }
+
     }
 }
