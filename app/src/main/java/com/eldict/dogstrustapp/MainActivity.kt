@@ -12,11 +12,18 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import com.eldict.dogstrustapp.navigation.AppNavigation
 import com.eldict.dogstrustapp.ui.theme.DogsTrustAppTheme
+import android.graphics.Color
+import androidx.activity.SystemBarStyle
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        enableEdgeToEdge( // for status bar
+            statusBarStyle = SystemBarStyle.light(Color.TRANSPARENT,
+                Color.TRANSPARENT),
+            navigationBarStyle = SystemBarStyle.light(Color.TRANSPARENT,
+                Color.TRANSPARENT)
+        )
         setContent {
             DogsTrustAppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
