@@ -4,6 +4,8 @@ import com.eldict.dogstrustapp.model.DogSize
 import com.eldict.dogstrustapp.model.DogGender
 import com.eldict.dogstrustapp.R
 
+// Holds the list of all dogs in one place, so the screens never contain dog data.
+// "object" means there is exactly one copy of it in the whole app.
 object DogRepository {
     val dogs: List<Dog> = listOf(
         Dog(
