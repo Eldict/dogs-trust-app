@@ -26,8 +26,13 @@ import com.eldict.dogstrustapp.ui.screens.DogDetailScreen
 import com.eldict.dogstrustapp.ui.screens.DogListScreen
 import com.eldict.dogstrustapp.ui.screens.HomeScreen
 import com.eldict.dogstrustapp.viewmodel.DogViewModel
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.Pets
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
 
-// Holds the Scaffold (top bar) and the NavHost that switches between screens.
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppNavigation() {
@@ -45,6 +50,15 @@ fun AppNavigation() {
         else -> "Dogs Trust"
     }
     val showBackArrow = currentRoute != Routes.HOME
+
+    // The three main destinations shown in the bottom bar.
+    val bottomBarItems = listOf(
+        NavItem(label = "Home", icon = Icons.Default.Home, route = Routes.HOME),
+        NavItem(label = "Dogs", icon = Icons.Default.Pets, route = Routes.DOG_LIST),
+        NavItem(label = "Info", icon = Icons.Default.Info, route = Routes.ADOPTION_INFO)
+    )
+    // The bar is hidden on the dog details screen, which is not a main destination.
+    val showBottomBar = bottomBarItems.any { item -> item.route == currentRoute }
 
     Scaffold(
         topBar = {
@@ -66,7 +80,32 @@ fun AppNavigation() {
                     navigationIconContentColor = MaterialTheme.colorScheme.onPrimary
                 )
             )
+        },
+
+        bottomBar = {
+            if (showBottomBar) {
+                NavigationBar {
+                    bottomBarItems.forEach { item ->
+                        NavigationBarItem(
+                            selected = currentRoute == item.route,
+                            onClick = {
+                                if (currentRoute != item.route) {
+                                    navController.navigate(item.route) {
+                                        launchSingleTop = true
+                                        restoreState = true
+                                    }
+                                }
+                            },
+                            icon = { Icon(imageVector = item.icon, contentDescription = item.label) },
+                            label = { Text(text = item.label) }
+                        )
+                    }
+                }
+            }
         }
+
+
+
     ) { innerPadding ->
         NavHost(
             navController = navController,

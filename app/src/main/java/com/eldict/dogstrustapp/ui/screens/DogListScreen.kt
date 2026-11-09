@@ -28,7 +28,12 @@ fun DogListScreen(
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         items(dogViewModel.dogs) { dog ->
-            DogCard(dog = dog, onDogClick = onDogClick)
+            DogCard(
+                dog = dog,
+                isFavourite = dog.id in dogViewModel.favouriteDogIds,
+                onDogClick = onDogClick,
+                onFavouriteClick = { dogViewModel.toggleFavourite(dog.id) }
+            )
         }
     }
 }
